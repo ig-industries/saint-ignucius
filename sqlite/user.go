@@ -15,7 +15,8 @@ type userRepository struct {
 
 var errNotImplemented = errors.New("[sqlite] not implemented")
 
-// NewUserRepository
+// NewUserRepository creates the user table if it doesn't exist, otherwise it
+// just returns an instance of userRepository which wraps an underlying sqlx.DB
 func NewUserRepository(db *sqlx.DB) (discord.UserRepository, error) {
 	// create user table if it doesn't exist
 	return &userRepository{db}, nil
